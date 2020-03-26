@@ -1,11 +1,7 @@
 <?php
 session_start();
-$login_user = null;
-$login_state = false;
-if (isset($_SESSION["username"])) {
-	$login_user = $_SESSION["username"];
-	$login_state = true;
-}
+
+require_once('./template/init.php');
 
 $problems_str = file_get_contents("../problems/problems.json");
 if (!$problems_str) {
@@ -14,6 +10,12 @@ if (!$problems_str) {
 }
 $problems = json_decode($problems_str, true);
 
+require_once('./template/useapi.php');
+$ranks = json_encode("{}");
+
+if($login_state){
+	$ranks = json_decode(run_cmd("get_s3_file_cache user/$login_user/ranks.json"), true);
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -35,7 +37,7 @@ $problems = json_decode($problems_str, true);
 			require_once('template/problems_table.php');
 			append_problems_header();
 			foreach ($problems as $ID => $config) {
-				append_problem_config($ID, $config);
+				append_problem_config($ID, $config, $ranks);
 			}
 			?>
 		</table>

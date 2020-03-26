@@ -1,13 +1,8 @@
 <?php
-
-
 session_start();
-$login_user = null;
-$login_state = false;
-if (isset($_SESSION["username"])) {
-	$login_user = $_SESSION["username"];
-	$login_state = true;
-}
+
+require_once('./template/init.php');
+
 if (!isset($_GET["id"])) {
 	header("Location: /");
 	exit();
@@ -62,25 +57,33 @@ $statement_str = file_get_contents("../problems/$problem_id/statement.md");
 <body>
 
 	<?php
-	require_once('template/web_header.php');
+	require_once('./template/web_header.php');
 	draw_web_header($login_state, $login_user);
 	?>
 
 	<div class="ats-container">
+		<span><a href="./standings.php?id=<?= $problem_id ?>">Standings</a></span>
+		<span><a href="https://github.com/ats5515/MarathonOnlineJudge-problems/tree/master/<?= $problem_id ?>">JudgeCode</a></span>
+	</div>
+
+	<div class="ats-container">
 		<h1><?= $config["name"] ?></h1>
-		<a href="/standings.php?id=<?= $problem_id ?>">Standings</a>
+		<div>
+			<span>Time Limit: <?= $config["timelimit"] ?>s /</span>
+			<span>Memory Limit: <?= $config["memorylimit"] ?> /</span>
+			<span>#Testcases: <?= $config["num_testcases"] ?></span>
+		</div>
 	</div>
-	<div id="config" class="ats-container">
-		<pre><?php var_dump($config); ?></pre>
-	</div>
+
 	<div id="statement" class="markdown-body ats-container"></div>
 
 	<div id="submit_form" class="ats-container">
 		<?php
-		require_once('template/submit_form.php');
+		require_once('./template/submit_form.php');
 		?>
 
 	</div>
+	<div style="margin-bottom:200px"></div>
 </body>
 
 </html>

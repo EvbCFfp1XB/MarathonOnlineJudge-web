@@ -1,12 +1,7 @@
 <?php
 session_start();
-$login_user = null;
-$login_state = false;
-if (isset($_SESSION["username"])) {
-	$login_user = $_SESSION["username"];
-	$login_state = true;
-}
 
+require_once('./template/init.php');
 require_once('template/auth.php');
 
 //check posted
@@ -19,7 +14,7 @@ if (
 
 	if ($_POST["password1"] != $_POST["password2"]) {
 		$register_result = false;
-		$MSG = "wrong password";
+		$MSG = "retype incorrect";
 	} else {
 		$username = $_POST["username"];
 		$password = $_POST["password1"];
@@ -28,7 +23,7 @@ if (
 			$_SESSION["username"] = $username;
 			//$_SESSION["password"] =  password_hash($password, PASSWORD_DEFAULT);
 			$MSG = "success";
-			header("Location: /index.php");
+			header("Location: ./index.php");
 			exit();
 		}
 	}
@@ -37,7 +32,7 @@ $init_username = "";
 if (isset($_POST['username'])) {
 	$init_username = $_POST['username'];
 } else if (isset($_SESSION['username'])) {
-	$init_username = $_POST['username'];
+	$init_username = $_SESSION['username'];
 }
 
 ?>
@@ -63,16 +58,20 @@ if (isset($_POST['username'])) {
 		?>
 	</div>
 	<div class="ats-container">
-		<form action="register.php" method="POST">
-			<p>Register</p>
-			<p>ユーザー名</p>
-			<p class="username"><input type="text" name="username" value="<?= $init_username ?>" maxlength="32" autocomplete="OFF" /></p>
-			<p>パスワード</p>
-			<p class="password"><input type="password" name="password1" maxlength="32" autocomplete="OFF" /></p>
-			<p>再入力</p>
-			<p class="password"><input type="password" name="password2" maxlength="32" autocomplete="OFF" /></p>
-			<p class="submit"><input type="submit" value="register" /></p>
+		<h1>Register</h1>
+		<form action="./register.php" class="ats-form" method="POST">
+			<label for="username">username</label>
+			<input type="text" id="username" name="username" placeholder="username" value="<?= $init_username ?>" maxlength="32" autocomplete="OFF" />
+
+			<label for="password1">password</label>
+			<input type="password" id="password1" name="password1" placeholder="password" maxlength="32" autocomplete="OFF" />
+
+			<label for="password2">retype password</label>
+			<input type="password" id="password2" name="password2" placeholder="password" maxlength="32" autocomplete="OFF" />
+
+			<input type="submit" value="Register" />
 		</form>
+		<a href="./login.php">Login</a>
 	</div>
 </body>
 

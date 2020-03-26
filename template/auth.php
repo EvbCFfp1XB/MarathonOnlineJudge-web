@@ -65,7 +65,7 @@ function verify_register($username, $password)
 	}
 
 	if (strlen($password) <= 2 || $password == null) {
-		return [false, 'password must have  at least 3 chars'];
+		return [false, 'password must have at least 3 chars'];
 	}
 
 	if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
@@ -77,7 +77,8 @@ function verify_register($username, $password)
 	require('template/useapi.php');
 	$result = run_cmd_exec("register_user $username " . "'\\''" . $hash . "'\\''" .' 2>&1', $output, $return_var);
 	if ($return_var != 0) {
-		return [false, implode($output)];
+		//return [false, implode($output)];
+		return [false, "user already registered"];
 	}
 	return [true, ""];
 }

@@ -1,27 +1,33 @@
 <?php
 session_start();
-$login_user = null;
-$login_state = false;
-if (isset($_SESSION["username"])) {
-	$login_user = $_SESSION["username"];
-	$login_state = true;
-}
+
+require_once('./template/init.php');
+
 if (!isset($_GET["id"])) {
 	header("Location: /");
 	exit();
 }
 $problem_id = $_GET["id"];
+
+if (!preg_match("/^[a-zA-Z0-9]+$/", $problem_id)) {
+	header("Location: ./");
+	exit();
+}
+
 $config_str = file_get_contents("../problems/$problem_id/config.json");
 if (!$config_str) {
 	header("Location: /");
 	exit();
 }
 $config = json_decode($config_str, true);
-require_once('template/useapi.php');
-$standings =  json_decode(run_cmd("get_scorelist $problem_id"), true);
+
+require_once('./template/useapi.php');
+
+$standings = json_decode(run_cmd("get_s3_file_cache cache/$problem_id/standings.json"), true);
 if (!$standings) {
 	$standings = [];
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -37,11 +43,14 @@ if (!$standings) {
 	draw_web_header($login_state, $login_user);
 	?>
 	<div class="ats-container">
+		<h1><?= $problem_id ?> Standings</h1>
 		<table class="ats-table">
 			<tr>
 				<th>Rank</th>
 				<th>User</th>
 				<th>Score</th>
+				<th>Submissions</th>
+				<th>Best</th>
 			</tr>
 			<?php
 			foreach ($standings as $data) {
@@ -50,6 +59,8 @@ if (!$standings) {
 					<td><?= $data['rank'] ?></td>
 					<td><?= $data['user'] ?></td>
 					<td><?= $data['score'] ?></td>
+					<td><a href="./submission.php?id="></a>submissions</td>
+					<td><a href="./submission.php?id=<?= $data['bestId'] ?>"><?= $data['bestId'] ?></a></td>
 				</tr>
 			<?php
 			}

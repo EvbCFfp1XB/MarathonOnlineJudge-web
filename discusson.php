@@ -1,11 +1,8 @@
 <?php
 session_start();
-$login_user = null;
-$login_state = false;
-if (isset($_SESSION["username"])) {
-	$login_user = $_SESSION["username"];
-	$login_state = true;
-}
+
+require_once('./template/init.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">

@@ -1,24 +1,31 @@
 <?php
 session_start();
-$login_user = null;
-$login_state = false;
-if (isset($_SESSION["username"])) {
-	$login_user = $_SESSION["username"];
-	$login_state = true;
-}
-require_once('template/auth.php');
-
+require_once('./template/init.php');
+require_once('./template/auth.php');
 //check posted
 $MSG = "";
+$login_result = false;
 if (isset($_POST["username"]) && isset($_POST["password"])) {
-	$username = $_POST["username"];
-	$password = $_POST["password"];
-	list($login_result, $MSG) = verify_login($username, $password);
-	if ($login_result) {
-		$_SESSION["username"] = $username;
-		//$_SESSION["password"] =  password_hash($password, PASSWORD_DEFAULT);
-		header("Location: /index.php");
-		exit();
+	if (isset($_SESSION["moj-token"]) && isset($_POST["token"])) {
+		if ($_SESSION["moj-token"] == $_POST["token"]) {
+			$username = $_POST["username"];
+			$password = $_POST["password"];
+			list($login_result, $MSG) = verify_login($username, $password);
+			if ($login_result) {
+				$_SESSION["username"] = $username;
+				//$_SESSION["password"] =  password_hash($password, PASSWORD_DEFAULT);
+				if (isset($_POST["before"])) {
+					header("Location:" . $_POST["before"]);
+				} else {
+					header("Location:" . "./index.php");
+				}
+				exit();
+			}
+		} else {
+			$MSG = "token error";
+		}
+	} else {
+		$MSG = "token error";
 	}
 }
 $init_username = "";
@@ -27,19 +34,23 @@ if (isset($_POST['username'])) {
 } else if (isset($_SESSION['username'])) {
 	$init_username = $_POST['username'];
 }
+
+$token = bin2hex(openssl_random_pseudo_bytes(16));
+$_SESSION["moj-token"] = $token;
+
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
-	<?php require_once('template/head.php') ?>
+	<?php require_once('./template/head.php') ?>
 	<title> Login </title>
 </head>
 
 <body>
 	<?php
-	require_once('template/web_header.php');
+	require_once('./template/web_header.php');
 	draw_web_header($login_state, $login_user);
 	?>
 	<div>
@@ -52,19 +63,18 @@ if (isset($_POST['username'])) {
 
 	<div class="ats-container">
 		<h1>Login</h1>
-		<form action="login.php" class="uk-form-horizontal" method="POST">
+		<form action="./login.php" class="ats-form" method="POST">
+			<input name="before" value="<?= $url_before ?>" hidden>
+			<input name="token" value="<?= $token ?>" hidden>
 
-			<div>
-				<label for="username" class="uk-form-label">username</label>
-				<input type="text" class="uk-input" id="username" name="username" value="<?= $init_username ?>" maxlength="32" autocomplete="OFF" />
-			</div>
-			<div>
-				<label for="password" class="uk-form-label">password</label>
-				<input type="password" class="uk-input" id="password" name="password" maxlength="32" autocomplete="OFF" />
-			</div>
-			<input type="submit" class="uk-button" value="Login" />
+			<label for="username">username</label>
+			<input type="text" id="username" name="username" placeholder="username" value="<?= $init_username ?>" maxlength="32" autocomplete="OFF" />
+			<label for="password">password</label>
+			<input type="password" id="password" name="password" placeholder="password" maxlength="32" autocomplete="OFF" />
+
+			<input type="submit" value="Login" />
 		</form>
-		<a href="register.php">register</a>
+		<a href="./register.php">Register</a>
 	</div>
 </body>
 

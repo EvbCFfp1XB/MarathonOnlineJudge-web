@@ -8,7 +8,7 @@ function draw_web_header($login_state, $username)
 			<ul>
 				<li><a href="./" class="ats-logo">Marathon Online Judge(β)</a></li>
 				<li><a href="./problem_list.php">Problems</a></li>
-				<li><a href="./user_ranking.php">Ranking</a></li>
+				<!--<li><a href="./user_ranking.php">Ranking</a></li>-->
 				<li><a href="./info.php">Info</a></li>
 			</ul>
 		</div>
