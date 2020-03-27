@@ -10,9 +10,9 @@ if (!isset($_GET["id"])) {
 }
 $submission_id = $_GET["id"];
 
-if (!preg_match("/^[a-zA-Z0-9]+$/", $submission_id)) {
+if (!preg_match("/\A[a-zA-Z0-9]+\z/", $submission_id)) {
 	echo "invalid submission id";
-	//header("Location: ./");
+	header("Location: ./");
 	exit();
 }
 

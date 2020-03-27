@@ -12,12 +12,12 @@ if (isset($_GET["problem"]) && isset($_GET["user"])) {
 	$problem = $_GET["problem"];
 	$user = $_GET["user"];
 
-	if (!preg_match("/^[a-zA-Z0-9]+$/", $problem)) {
+	if (!preg_match("/\A[a-zA-Z0-9]+\z/", $problem)) {
 		header("Location: ./");
 		exit();
 	}
 
-	if (!preg_match("/^[a-zA-Z0-9]+$/", $user)) {
+	if (!preg_match("/\A[a-zA-Z0-9]+\z/", $user)) {
 		header("Location: ./");
 		exit();
 	}
@@ -29,7 +29,7 @@ if (isset($_GET["problem"]) && isset($_GET["user"])) {
 } else if (isset($_GET["user"])) {
 	$user = $_GET["user"];
 
-	if (!preg_match("/^[a-zA-Z0-9]+$/", $user)) {
+	if (!preg_match("/\A[a-zA-Z0-9]+\z/", $user)) {
 		header("Location: ./");
 		exit();
 	}

@@ -10,7 +10,7 @@ if (!isset($_GET["user"])) {
 
 $user = $_GET["user"];
 
-if (!preg_match("/^[a-zA-Z0-9]+$/", $user)) {
+if (!preg_match("/\A[a-zA-Z0-9]+\z/", $user)) {
 	header("Location: ./");
 	exit();
 }

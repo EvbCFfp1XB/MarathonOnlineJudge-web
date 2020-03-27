@@ -19,7 +19,7 @@ function append_header()
 <?php
 function append_submission_result($result, $sub_id)
 {
-	if (!preg_match("/^[a-zA-Z0-9]+$/", $sub_id)) {
+	if (!preg_match("/\A[a-zA-Z0-9]+\z/", $sub_id)) {
 		header("Location: ./");
 		exit();
 	}

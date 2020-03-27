@@ -9,7 +9,7 @@ if (!isset($_GET["id"])) {
 }
 $problem_id = $_GET["id"];
 
-if (!preg_match("/^[a-zA-Z0-9]+$/", $problem_id)) {
+if (!preg_match("/\A[a-zA-Z0-9]+\z/", $problem_id)) {
 	header("Location: ./");
 	exit();
 }
