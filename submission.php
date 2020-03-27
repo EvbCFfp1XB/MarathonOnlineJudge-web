@@ -51,6 +51,14 @@ $source = run_cmd("get_source_by_id $submission_id");
 	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	<?php require_once('./template/head.php') ?>
 	<title>submission : <?= $submission_id ?></title>
+	<script>
+		window.document.onkeydown = function() {
+			if (event.keyCode == 116) {
+				event.keyCode = null;
+				return false;
+			}
+		}
+	</script>
 </head>
 
 <body>
