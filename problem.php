@@ -73,7 +73,7 @@ $statement_str = file_get_contents("../problems/$problem_id/statement.md");
 		<h1><?= $config["name"] ?></h1>
 		<div>
 			<span>Time Limit: <?= $config["timelimit"] ?>s /</span>
-			<span>Memory Limit: <?= $config["memorylimit"] ?> /</span>
+			<span>Memory Limit: <?= $config["memorylimit"] ?>B /</span>
 			<span>#Testcases: <?= $config["num_testcases"] ?></span>
 		</div>
 	</div>
