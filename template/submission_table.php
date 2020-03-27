@@ -32,9 +32,14 @@ function append_submission_result($result, $sub_id)
 		}
 		$result = json_decode($info_str, true);
 	}
+	$progress = null;
+	if (isset($result["status"]) && $result["status"] != "WJ") {
+		$progress = "done";
+	} else {
+		$progress = str_replace(PHP_EOL, '', run_cmd('get_progress ' . $sub_id));
+	}
 
 	require_once(__DIR__ . "/useapi.php");
-	$progress = str_replace(PHP_EOL, '', run_cmd('get_progress ' . $sub_id));
 	$prob_dir = run_cmd_exec("problems_path", $TMP, $TMP);
 	$id = $result["problemId"];
 	$config_str = file_get_contents("$prob_dir/$id/config.json");
