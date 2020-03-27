@@ -26,9 +26,7 @@ function append_submission_result($result, $sub_id)
 	if (!$result) {
 		$info_str = run_cmd("get_s3_file_dircache submissions/$sub_id/info.json");
 		if (empty($info_str)) {
-			echo "submission does not exist";
-			header("Location: ./");
-			exit();
+			return;
 		}
 		$result = json_decode($info_str, true);
 	}
@@ -44,8 +42,7 @@ function append_submission_result($result, $sub_id)
 	$id = $result["problemId"];
 	$config_str = file_get_contents("$prob_dir/$id/config.json");
 	if (!$config_str) {
-		header("Location: /");
-		exit();
+		return;
 	}
 	$config = json_decode($config_str, true);
 
