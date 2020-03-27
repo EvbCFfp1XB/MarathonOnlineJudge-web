@@ -8,9 +8,15 @@ body{
     min-height: 100vh;
 }
 
-h1,h2,h3,h4{
+h1,h2,h3{
     border-bottom: 1px solid #006e54 !important;
     border-left: 10px solid #006e54 !important;
+    padding: 7px;
+}
+
+h4{
+    border-bottom: 1px solid #006e54 !important;
+    border-left: 6px solid #006e54 !important;
     padding: 7px;
 }
 
@@ -25,18 +31,23 @@ h1,h2,h3,h4{
     color:#fff;
     padding: 20px 40px 0 40px;
     margin: 0;
-    margin-bottom: 20px;
+}
+
+.ats-sub-header{
+    padding-left: 50px;
+    padding-top: 20px;
+    margin: 0;
 }
 
 .ats-navbar{
 }
 
-.ats-navbar ul{
+.ats-navbar ul, .ats-sub-navbar ul {
     padding:0;
     list-style: none;
 }
 
-.ats-navbar li{
+.ats-navbar li, .ats-sub-navbar li{
     display: inline;
 }
 
@@ -48,6 +59,28 @@ h1,h2,h3,h4{
     display: inline;
     font-size: 18px;
 }
+
+.ats-sub-navbar a{
+    color: #333;
+    text-decoration: none;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 0px;
+    display: inline;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.ats-sub-navbar a:hover {
+    background-color: #ccc;
+}
+
+.ats-sub-logo{
+    font-size: 24px !important;
+    margin: 0 20px;
+}
+
 .ats-navbar-right{
     float: right;
 }
@@ -208,15 +241,31 @@ li.L9 {
 
 .ats-label{
     text-align: center;
-    width: 40px;
+    min-width: 36px;
     height: 24px;
     padding: 0px;
     border-radius: 3px;
     display: table-cell;
     vertical-align: middle;
+    font-size: 14px;
+}
+
+.WJ{
+    background-color: rgb(100, 100, 100);
+    color: #fff;
 }
 
 .AC{
     background-color: rgb(35, 219, 35);
+    color: #fff;
+}
+
+.CE, .WA, .TLE, .RE, .OLE, .MLE{
+    background-color: rgb(255, 167, 46);
+    color: #fff;
+}
+
+.IE {
+    background-color: rgb(255, 0, 0);
     color: #fff;
 }

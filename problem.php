@@ -9,6 +9,11 @@ if (!isset($_GET["id"])) {
 }
 $problem_id = $_GET["id"];
 
+if (!preg_match("/^[a-zA-Z0-9]+$/", $problem_id)) {
+	header("Location: ./");
+	exit();
+}
+
 $config_str = file_get_contents("../problems/$problem_id/config.json");
 if (!$config_str) {
 	header("Location: /");
@@ -59,12 +64,10 @@ $statement_str = file_get_contents("../problems/$problem_id/statement.md");
 	<?php
 	require_once('./template/web_header.php');
 	draw_web_header($login_state, $login_user);
-	?>
 
-	<div class="ats-container">
-		<span><a href="./standings.php?id=<?= $problem_id ?>">Standings</a></span>
-		<span><a href="https://github.com/ats5515/MarathonOnlineJudge-problems/tree/master/<?= $problem_id ?>">JudgeCode</a></span>
-	</div>
+	require_once('./template/problem_header.php');
+	draw_problem_header($login_state, $login_user, $problem_id);
+	?>
 
 	<div class="ats-container">
 		<h1><?= $config["name"] ?></h1>

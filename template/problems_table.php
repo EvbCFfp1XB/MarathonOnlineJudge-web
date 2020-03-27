@@ -4,7 +4,6 @@ function append_problems_header()
 ?>
 	<tr>
 		<th>Problem</th>
-		<th>Status</th>
 		<th>Tags</th>
 		<th>Judge</th>
 		<th>Standings</th>
@@ -26,11 +25,19 @@ function append_problem_config($id, $config, $ranks)
 
 	<tr <?php
 		if ($submit) {
-		?> style="background-color: rgb(200,255,255)" <?php
+		?> style="background-color: rgb(220,255,255)" <?php
 													}
 														?>>
-		<td><a href="./problem.php?id=<?= $id ?>"><?= $config["name"] ?></a></td>
-		<td><?= $config["status"] ?></td>
+		<td>
+			<a href="./problem.php?id=<?= $id ?>"><?= $config["name"] ?></a>
+			<?php
+			if ($config['status'] == "testing") {
+			?>
+				<sup>testing</sup>
+			<?php
+			}
+			?>
+		</td>
 		<td>
 			<?php
 			foreach ($config["tags"] as $tag) {

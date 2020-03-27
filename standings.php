@@ -33,14 +33,17 @@ if (!$standings) {
 <html lang="ja">
 
 <head>
-	<?php require_once('template/head.php') ?>
+	<?php require_once('./template/head.php') ?>
 	<title>Standings</title>
 </head>
 
 <body>
 	<?php
-	require_once('template/web_header.php');
+	require_once('./template/web_header.php');
 	draw_web_header($login_state, $login_user);
+
+	require_once('./template/problem_header.php');
+	draw_problem_header($login_state, $login_user, $problem_id);
 	?>
 	<div class="ats-container">
 		<h1><?= $problem_id ?> Standings</h1>
@@ -57,9 +60,9 @@ if (!$standings) {
 			?>
 				<tr>
 					<td><?= $data['rank'] ?></td>
-					<td><?= $data['user'] ?></td>
+					<td><a href="./user.php?user=<?= $data["user"] ?>"><?= $data["user"] ?></a></td>
 					<td><?= $data['score'] ?></td>
-					<td><a href="./submission.php?id="></a>submissions</td>
+					<td><a href="./submissions.php?user=<?= $data['user'] ?>&problem=<?= $problem_id ?>">submissions</a></td>
 					<td><a href="./submission.php?id=<?= $data['bestId'] ?>"><?= $data['bestId'] ?></a></td>
 				</tr>
 			<?php

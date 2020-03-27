@@ -4,6 +4,7 @@ function append_header()
 ?>
 	<tr>
 		<th>ID</th>
+		<th>Date</th>
 		<th>Problem</th>
 		<th>User</th>
 		<th>Score</th>
@@ -16,11 +17,26 @@ function append_header()
 }
 ?>
 <?php
-function append_submission_result($progress, $result, $info, $sub_id)
+function append_submission_result($result, $sub_id)
 {
+	if (!preg_match("/^[a-zA-Z0-9]+$/", $sub_id)) {
+		header("Location: ./");
+		exit();
+	}
+	if (!$result) {
+		$info_str = run_cmd("get_s3_file_dircache submissions/$sub_id/info.json");
+		if (empty($info_str)) {
+			echo "submission does not exist";
+			header("Location: ./");
+			exit();
+		}
+		$result = json_decode($info_str, true);
+	}
+
 	require_once(__DIR__ . "/useapi.php");
+	$progress = str_replace(PHP_EOL, '', run_cmd('get_progress ' . $sub_id));
 	$prob_dir = run_cmd_exec("problems_path", $TMP, $TMP);
-	$id = $info["problemId"];
+	$id = $result["problemId"];
 	$config_str = file_get_contents("$prob_dir/$id/config.json");
 	if (!$config_str) {
 		header("Location: /");
@@ -32,8 +48,9 @@ function append_submission_result($progress, $result, $info, $sub_id)
 
 	<tr>
 		<td><a href="./submission.php?id=<?= $sub_id ?>"><?= $sub_id ?></a></td>
-		<td><a href="./problem.php?id=<?= $info["problemId"] ?>"><?= $config["name"] ?></a></td>
-		<td><?= $info["user"] ?></td>
+		<td><?= $result["date"] ?></td>
+		<td><a href="./problem.php?id=<?= $result["problemId"] ?>"><?= $config["name"] ?></a></td>
+		<td><a href="./user.php?user=<?= $result["user"] ?>"><?= $result["user"] ?></a></td>
 		<td>
 			<?php
 			if ($progress == "done") {
@@ -43,10 +60,9 @@ function append_submission_result($progress, $result, $info, $sub_id)
 			}
 			?>
 		</td>
-		<td><?= $info["lang"] ?></td>
+		<td><?= $result["lang"] ?></td>
 		<td>
 			<?php
-
 			$status = "WJ";
 			$status_class = "WJ";
 			if ($progress == "done") {

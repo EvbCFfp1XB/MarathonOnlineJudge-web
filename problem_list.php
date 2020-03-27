@@ -21,20 +21,20 @@ if($login_state){
 <html lang="ja">
 
 <head>
-	<?php require_once('template/head.php') ?>
+	<?php require_once('./template/head.php') ?>
 	<title> Problems </title>
 </head>
 
 <body>
 	<?php
-	require_once('template/web_header.php');
+	require_once('./template/web_header.php');
 	draw_web_header($login_state, $login_user);
 	?>
 	<div class="ats-container">
 		<h1>Problem List</h1>
 		<table class="ats-table">
 			<?php
-			require_once('template/problems_table.php');
+			require_once('./template/problems_table.php');
 			append_problems_header();
 			foreach ($problems as $ID => $config) {
 				append_problem_config($ID, $config, $ranks);
