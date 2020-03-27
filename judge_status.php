@@ -51,7 +51,7 @@ require_once('./template/init.php');
 			</tr>
 			<tr>
 				<td><span class="ats-label OLE">OLE</span></td>
-				<td>プログラムの出力サイズが32MBを超過する</td>
+				<td>プログラムの出力サイズが32MBを超過する(未実装)</td>
 			</tr>
 			<tr>
 				<td><span class="ats-label IE">IE</span></td>
