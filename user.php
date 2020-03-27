@@ -41,6 +41,7 @@ if (!empty($ranks_str)) {
 	?>
 	<div class="ats-container">
 		<h1>User: <?= $user ?></h1>
+		<a href="./submissions.php?user=<?= $data['user'] ?>">All Submissions</a>
 	</div>
 	<div class="ats-container">
 		<h2>Achivements</h2>
