@@ -21,8 +21,8 @@ function verify_login($username, $password)
 		return [false, 'too long password'];
 	}
 
-	if (!preg_match("/\A[a-zA-Z0-9]+\z/", $username)) {
-		return [false, 'username must match "/\A[a-zA-Z0-9]+\z/"'];
+	if (!preg_match("/\A[a-zA-Z0-9_]+\z/", $username)) {
+		return [false, 'username must match "/\A[a-zA-Z0-9_]+\z/"'];
 	}
 
 	require('template/useapi.php');
@@ -51,7 +51,6 @@ function verify_login($username, $password)
 function verify_register($username, $password)
 {
 
-
 	if (strlen($username) > 30) {
 		return [false, 'too long username'];
 	}
@@ -68,12 +67,12 @@ function verify_register($username, $password)
 		return [false, 'password must have at least 3 chars'];
 	}
 
-	if (!preg_match("/\A[a-zA-Z0-9]+\z/", $username)) {
-		return [false, 'username must match "/\A[a-zA-Z0-9]+\z/"'];
+	if (!preg_match("/\A[a-zA-Z0-9_]+\z/", $username)) {
+		return [false, 'username must match "/\A[a-zA-Z0-9_]+\z/"'];
 	}
 
 	$hash = password_hash($password, PASSWORD_DEFAULT);
-	
+
 	require('template/useapi.php');
 	$result = run_cmd_exec("register_user $username " . "'\\''" . $hash . "'\\''" .' 2>&1', $output, $return_var);
 	if ($return_var != 0) {
