@@ -16,7 +16,7 @@ if (!preg_match("/\A[a-zA-Z0-9]+\z/", $problem_id)) {
 
 $config_str = file_get_contents("../problems/$problem_id/config.json");
 if (!$config_str) {
-	header("Location: /");
+	header("Location: ./");
 	exit();
 }
 $config = json_decode($config_str, true);

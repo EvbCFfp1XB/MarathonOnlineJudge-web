@@ -50,7 +50,7 @@ ksort($langs)
 	</div>
 
 	<div class="ats-container">
-		<p>基本的に言語のバージョンはAmazon Linux 2デフォルトでインストールされるものです。</p>
+		<p>基本的に言語のバージョンは Amazon Linux 2 にデフォルトでインストールされるものです。</p>
 		<p>python3では、numpyとscipyがたぶん使えます。</p>
 		<p>javaの提出は、クラス名Mainで宣言してください</p>
 		<p>インストールのコマンド等は<a href="https://github.com/ats5515/MarathonOnlineJudge-judge/tree/master/judge/lang">こちら</a>を参照してください。
