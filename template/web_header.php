@@ -9,7 +9,7 @@ function draw_web_header($login_state, $username)
 				<li><a href="./" class="ats-logo">Marathon Online Judge(β)</a></li>
 				<li><a href="./problem_list.php">Problems</a></li>
 				<!--<li><a href="./user_ranking.php">Ranking</a></li>-->
-				<li><a href="./languages.php">Info</a></li>
+				<li><a href="./rule.php">Info</a></li>
 			</ul>
 		</div>
 		<div class="ats-navbar ats-navbar-right">
