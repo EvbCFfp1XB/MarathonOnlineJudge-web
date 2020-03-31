@@ -43,7 +43,7 @@ if (!$standings) {
 	draw_web_header($login_state, $login_user);
 
 	require_once('./template/problem_header.php');
-	draw_problem_header($login_state, $login_user, $problem_id);
+	draw_problem_header($login_state, $login_user, $problem_id, $config);
 	?>
 	<div class="ats-container">
 		<h1><?= $problem_id ?> Standings</h1>

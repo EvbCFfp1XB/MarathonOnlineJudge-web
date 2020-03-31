@@ -16,7 +16,7 @@ if (!preg_match("/\A[a-zA-Z0-9]+\z/", $problem_id)) {
 
 $config_str = file_get_contents("../problems/$problem_id/config.json");
 if (!$config_str) {
-	header("Location: /");
+	header("Location: ./");
 	exit();
 }
 $config = json_decode($config_str, true);
@@ -66,7 +66,7 @@ $statement_str = file_get_contents("../problems/$problem_id/statement.md");
 	draw_web_header($login_state, $login_user);
 
 	require_once('./template/problem_header.php');
-	draw_problem_header($login_state, $login_user, $problem_id);
+	draw_problem_header($login_state, $login_user, $problem_id, $config);
 	?>
 
 	<div class="ats-container">

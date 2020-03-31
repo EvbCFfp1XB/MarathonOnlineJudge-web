@@ -17,7 +17,6 @@ require_once('./template/init.php');
 	<?php
 	require_once('./template/web_header.php');
 	draw_web_header($login_state, $login_user);
-	echo "test4";
 	?>
 	<div class="ats-container">
 		<h1>Marathon Online Judge(仮)</h1>

@@ -5,7 +5,7 @@ require_once('./template/init.php');
 
 if (!isset($_GET["id"])) {
 	echo "invalid submission id";
-	header("Location: /");
+	header("Location: ./");
 	exit();
 }
 $submission_id = $_GET["id"];
@@ -67,7 +67,7 @@ $source = run_cmd("get_source_by_id $submission_id");
 	draw_web_header($login_state, $login_user);
 	if (isset($result["problemId"])) {
 		require_once('./template/problem_header.php');
-		draw_problem_header($login_state, $login_user, $result["problemId"]);
+		draw_problem_header($login_state, $login_user, $result["problemId"], null);
 	}
 	?>
 	<div class="ats-container">
