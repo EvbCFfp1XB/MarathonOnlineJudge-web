@@ -14,7 +14,6 @@ function draw_problem_header($login_state, $login_user, $problem, $config)
 			exit();
 		}
 		$config = json_decode($config_str, true);
-		exit();
 	}
 ?>
 

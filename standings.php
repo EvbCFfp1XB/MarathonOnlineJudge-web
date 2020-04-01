@@ -46,7 +46,7 @@ if (!$standings) {
 	draw_problem_header($login_state, $login_user, $problem_id, $config);
 	?>
 	<div class="ats-container">
-		<h1><?= $problem_id ?> Standings</h1>
+		<h1>Standings</h1>
 		<table class="ats-table">
 			<tr>
 				<th>Rank</th>

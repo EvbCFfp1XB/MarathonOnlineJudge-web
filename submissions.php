@@ -55,7 +55,7 @@ if (isset($_GET["problem"]) && isset($_GET["user"])) {
 	draw_web_header($login_state, $login_user);
 	if ($problem) {
 		require_once('./template/problem_header.php');
-		draw_problem_header($login_state, $login_user, $problem);
+		draw_problem_header($login_state, $login_user, $problem, null);
 	}
 	//var_dump($data_json);
 	//exit();
