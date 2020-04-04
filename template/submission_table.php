@@ -24,11 +24,14 @@ function append_submission_result($result, $sub_id)
 		exit();
 	}
 	if (!$result) {
-		$info_str = run_cmd("get_s3_file_dircache submissions/$sub_id/info.json");
-		if (empty($info_str)) {
-			return;
+		$result_str = run_cmd("get_s3_file_dircache submissions/$sub_id/result.json");
+		if (empty($result_str)) {
+			$result_str = run_cmd("get_s3_file_dircache submissions/$sub_id/info.json");
+			if (empty($result_str)) {
+				return;
+			}
 		}
-		$result = json_decode($info_str, true);
+		$result = json_decode($result_str, true);
 	}
 	$progress = null;
 	if (isset($result["status"]) && $result["status"] != "WJ") {
@@ -48,7 +51,7 @@ function append_submission_result($result, $sub_id)
 
 ?>
 
-	<tr>
+	<tr id="sub_<?= $sub_id ?>">
 		<td><a href="./submission.php?id=<?= $sub_id ?>"><?= $sub_id ?></a></td>
 		<td><?= $result["date"] ?></td>
 		<td><a href="./problem.php?id=<?= $result["problemId"] ?>"><?= $config["name"] ?></a></td>
@@ -99,6 +102,55 @@ function append_submission_result($result, $sub_id)
 			?>
 		</td>
 	</tr>
+<?php
+}
+?>
+
+<?php
+
+function draw_table($sub_ids)
+{
+?>
+	<table class="ats-table">
+		<?php
+		append_header();
+		foreach ($sub_ids as $sub_id) {
+		?>
+			<tr id="sub_<?= $sub_id ?>">
+				<?php
+				?>
+			</tr>
+		<?php
+		}
+		?>
+	</table>
+	<?php
+	?>
+	<script>
+		$(window).on('load', function() {
+			<?php
+			foreach ($sub_ids as $sub_id) {
+			?>
+				$.ajax({
+					url: "./submission_row.php",
+					type: "post",
+					dataType: "text",
+					cache: false,
+					data: {
+						'sub_id': <?= $sub_id ?>
+					}
+
+				}).done(function(response) {
+					//alert(response);
+					document.getElementById("sub_<?= $sub_id ?>").outerHTML = response;
+				}).fail(function(xhr, textStatus, errorThrown) {
+					//alert(errorThrown);
+				});
+			<?php
+			}
+			?>
+		});
+	</script>
 <?php
 }
 ?>
