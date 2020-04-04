@@ -32,6 +32,14 @@ require_once('./template/init.php');
 			<li><a href="https://github.com/kosakkun/mm-tester">mm-tester</a>（kosakkunさん）</li>
 			<li><a href="https://togetter.com/id/masashinakata">twitter感想戦まとめ</a>(agwさん)</li>
 		</ul>
+		<p style="font-size: 1.2em">焼きなまし</p>
+		<ul>
+			<li><a href="https://github.com/hakomo/Simulated-Annealing-Techniques">焼きなましテクニック</a>（hakomoさん）</li>
+		</ul>
+		<p style="font-size: 1.2em">ビームサーチ</p>
+		準備中
+		<p style="font-size: 1.2em">過去問</p>
+		準備中
 		<h3>ただいま開発中！！！</h3>
 		<p>現在、本サイトはオープンベータとして公開中です</p>
 		<p>バク報告や欲しい機能は<a href="https://twitter.com/ats5515">開発者twitter</a>
