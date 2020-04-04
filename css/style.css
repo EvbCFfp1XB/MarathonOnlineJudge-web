@@ -288,3 +288,7 @@ li.L9 {
 .ats-page-button ul li a{
     color:#777;
 }
+
+*:focus {
+    outline: none;
+}

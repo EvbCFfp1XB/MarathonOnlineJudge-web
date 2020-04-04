@@ -6,7 +6,7 @@ function draw_web_header($login_state, $username)
 	<header class="ats-header">
 		<div class="ats-navbar ats-navbar-left">
 			<ul>
-				<li><a href="./" class="ats-logo">Marathon Online Judge(β)</a></li>
+				<li><a href="./" class="ats-logo">Opt-Judge(β)</a></li>
 				<li><a href="./problem_list.php">Problems</a></li>
 				<li><a href="./submissions.php">Submissions</a></li>
 				<li><a href="./user_ranking.php">Ranking</a></li>

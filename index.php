@@ -10,7 +10,7 @@ require_once('./template/init.php');
 <head>
 	<?php require_once('./template/head.php') ?>
 
-	<title> Marathon Online Judge </title>
+	<title> Opt-Judge </title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@ require_once('./template/init.php');
 	draw_web_header($login_state, $login_user);
 	?>
 	<div class="ats-container">
-		<h1>Marathon Online Judge(仮)</h1>
+		<h1>Opt-Judge</h1>
 		<h3>本サイトについて</h3>
 		<p>最適化問題に特化したオンラインジャッジです。</p>
 		<p>問題一覧はヘッダのProblemsまたは<a href="./problem_list.php">こちら</a>から見れます。</p>
@@ -37,9 +37,9 @@ require_once('./template/init.php');
 		<p>バク報告や欲しい機能は<a href="https://twitter.com/ats5515">開発者twitter</a>
 			またはgithubのissue（以下）からお願いします。
 			<ul>
-				<li><a href="https://github.com/ats5515/MarathonOnlineJudge-judge/issues">ジャッジに関するもの</a></li>
-				<li><a href="https://github.com/ats5515/MarathonOnlineJudge-problems/issues">問題に関するもの</a></li>
-				<li><a href="https://github.com/ats5515/MarathonOnlineJudge-web/issues">ウェブに関するもの</a></li>
+				<li><a href="https://github.com/ats5515/MarathonOnlineJudge-judge/issues">ジャッジ関連</a></li>
+				<li><a href="https://github.com/ats5515/MarathonOnlineJudge-problems/issues">問題関連</a></li>
+				<li><a href="https://github.com/ats5515/MarathonOnlineJudge-web/issues">ウェブ関連</a></li>
 			</ul>
 		</p>
 		<h3>その他</h3>

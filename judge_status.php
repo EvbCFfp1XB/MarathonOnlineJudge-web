@@ -26,6 +26,10 @@ require_once('./template/init.php');
 				<th>Description</th>
 			</tr>
 			<tr>
+				<td><span class="ats-label WJ">WJ</span></td>
+				<td>ジャッジ待ち。この状態が1時間以上続いたら報告お願いします。</td>
+			</tr>
+			<tr>
 				<td><span class="ats-label AC">AC</span></td>
 				<td>出力が条件を満たす。ACの提出のみが順位表に載る</td>
 			</tr>

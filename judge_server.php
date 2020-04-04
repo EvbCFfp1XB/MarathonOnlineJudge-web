@@ -20,10 +20,9 @@ require_once('./template/init.php');
 	?>
 	<div class="ats-container">
 		<h1>Judge Server</h1>
-		<p>AWS上で動かしています。ジャッジサーバのイメージはAmazon Linux 2です。</p>
-		<p>現状、提出が発生するたびにサーバのインスタンス生成するところからやるようにしています。
-			そのため、ジャッジが開始するまでが遅いです。</p>
-		<p>インスタンスタイプはt2.microです。動作周波数は2.4GHzです。</p>
+		<p>AWS EC2(イメージ: Amazon Linux 2)</p>
+		<p>インスタンスタイプはt2.micro。CPU周波数は2.4GHz。</p>
+		<p>お金に余裕が出来たら強いのに変えたい</p>
 	</div>
 </body>
 
