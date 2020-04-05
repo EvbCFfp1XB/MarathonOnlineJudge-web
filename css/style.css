@@ -271,13 +271,13 @@ li.L9 {
 }
 
 .ats-page-button ul li{
-    display: inline-block;
+    display: table-cell;
     text-align: center;
     margin: 0px;
     min-width: 28px;
     min-height: 28px;
     border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 1px;
+    border-radius: 3px;
     box-sizing: border-box;
 }
 
